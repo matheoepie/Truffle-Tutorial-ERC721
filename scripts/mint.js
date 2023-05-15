@@ -10,9 +10,9 @@ const API_KEY = process.env.NODE_KEY
 
 
 //* Remember to write the nft address in manually after deploying the contract
-const NFT_CONTRACT_ADDRESS = ""
-const OWNER_ADDRESS = "";
-const MUMBAI = `https://rpc-mumbai.maticvigil.com/v1/${API_KEY}`
+const NFT_CONTRACT_ADDRESS = "0x959e3c1bd37E28F43434110fB1A723EF9AeE66Af"
+const OWNER_ADDRESS = "0x75BDCC5814628fF415eCfb4d4ADb3Ab45C7f7B4C";
+const MUMBAI = `https://polygon-mumbai.g.alchemy.com/v2/${API_KEY}`
 const MATIC = `https://rpc-mainnet.maticvigil.com/v1/${API_KEY}`
 const NUM_ITEMS = 5;
 
@@ -26,10 +26,7 @@ async function main() {
 
   try {
     //*define web3, contract and wallet instances
-    const provider = new HDWalletProvider(
-      MNEMONIC,
-      MUMBAI
-    );
+    const provider = new HDWalletProvider(MNEMONIC,MUMBAI);
 
     const web3Instance = new web3(provider);
 
@@ -41,7 +38,7 @@ async function main() {
 
       //* just mint 
     await nftContract.methods
-      .mintItem(OWNER_ADDRESS, `your token json uri`)
+      .mintItem(OWNER_ADDRESS, `https://gateway.pinata.cloud/ipfs/QmX2Hhb6nrpsRhuZWu7JWeaRrfgM9VWy6xcMAYWvQTajaw?_gl=1*vk5n7y*rs_ga*NjM2NDI5MTg4LjE2ODQxNzA5MDk.*rs_ga_5RMPXG14TE*MTY4NDE3MDkxMC4xLjEuMTY4NDE3Mzc1NC41NS4wLjA.`)
       .send({ from: OWNER_ADDRESS }).then(console.log('minted')).catch(error => console.log(error));
 
 
